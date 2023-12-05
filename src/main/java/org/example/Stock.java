@@ -25,7 +25,7 @@ public abstract class Stock {
         _investors.remove(investor);
     }
 
-    private void update()
+    private void notify()
     {
         _investors.forEach(IInvestor::update);
     }
@@ -44,7 +44,8 @@ public abstract class Stock {
 
     public void set_price(double _price) {
         this._price = _price;
-        update();
+        // each time the price changes, it will notify its observers
+        notify();
     }
 
     public String get_currency() {
@@ -53,7 +54,8 @@ public abstract class Stock {
 
     public void set_currency(String _currency) {
         this._currency = _currency;
-        update();
+        // each time the currency changes, it will notify its observers
+        notify();
     }
 
     public String getStockInfo(){
