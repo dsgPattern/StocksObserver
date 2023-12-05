@@ -4,12 +4,15 @@ public class Main {
     public static void main(String[] args){
         AmazonStock amzStock = new AmazonStock("$", 1000);
 
-        PrivateInvestor privateInvestor = new PrivateInvestor("John Doe", amzStock);
-        PublicInvestor publicInvestor = new PublicInvestor("VOO", amzStock);
+        PrivateInvestor johnDoeInvestor = new PrivateInvestor("John Doe", amzStock);
+        PublicInvestor vooInvestor = new PublicInvestor("VOO", amzStock);
 
         amzStock.set_price(1001);
+        amzStock.unsubscribe(johnDoeInvestor);
         amzStock.set_price(1000);
-        amzStock.detachInvestor(publicInvestor);
+        amzStock.unsubscribe(vooInvestor);
+
+        amzStock.subscribe(johnDoeInvestor);
 
         amzStock.set_price(1002);
 

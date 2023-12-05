@@ -3,7 +3,7 @@ package org.example;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Stock {
+public abstract class Stock implements StockSubscriber {
     private String _currency;
     private double _price;
     private String _name;
@@ -15,12 +15,12 @@ public abstract class Stock {
         _price = price;
     }
 
-    public void attachInvestor(IInvestor investor){
+    public void subscribe(IInvestor investor){
         if(_investors.contains(investor)) return;
         _investors.add(investor);
     }
 
-    public void detachInvestor(IInvestor investor){
+    public void unsubscribe(IInvestor investor){
         if(!_investors.contains(investor)) return;
         _investors.remove(investor);
     }
